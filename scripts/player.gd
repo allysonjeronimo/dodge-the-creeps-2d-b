@@ -6,7 +6,13 @@ signal hit
 var screen_size
 
 func _ready():
+	hide()
 	screen_size = get_viewport_rect().size
+	
+func start(pos):
+	position = pos
+	show()
+	$CollisionShape2D.enabled = true
 	
 func _process(delta: float):
 	var velocity = Vector2.ZERO 
