@@ -12,7 +12,7 @@ func _ready():
 func start(pos):
 	position = pos
 	show()
-	$CollisionShape2D.enabled = true
+	$CollisionShape2D.disabled = false
 	
 func _process(delta: float):
 	var velocity = Vector2.ZERO 

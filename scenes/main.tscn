@@ -15,7 +15,6 @@ script = ExtResource("1_0wfyh")
 mob_scene = ExtResource("2_sugp2")
 
 [node name="Player" parent="." instance=ExtResource("1_o5qli")]
-visible = false
 
 [node name="ScoreTimer" type="Timer" parent="."]
 
@@ -33,6 +32,9 @@ position = Vector2(240, 540)
 curve = SubResource("Curve2D_0wfyh")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(480, 664.817)
+rotation = 1.5708
+progress = 1144.8
 
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]

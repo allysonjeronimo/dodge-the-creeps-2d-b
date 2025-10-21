@@ -4,18 +4,22 @@ var score = 0
 @export var mob_scene: PackedScene
 
 func _ready():
-	$StartTimer.start()
+	pass
 	
 func start_game():
-	pass
+	score = 0
+	$Player.start($StartPosition.position)
+	$StartTimer.start()
 	
 func game_over():
-	pass
+	$ScoreTimer.stop()
+	$MobTimer.stop()
 	
 func _on_score_timer_timeout() -> void:
 	score += 1
 
 func _on_mob_timer_timeout() -> void:
+	# Instancia o inimigo
 	var new_mob = mob_scene.instantiate()
 	
 	var path_follow_2d = $Path2D/PathFollow2D
@@ -23,9 +27,13 @@ func _on_mob_timer_timeout() -> void:
 	
 	new_mob.position = path_follow_2d.position
 	new_mob.rotation = path_follow_2d.rotation + PI / 2
+	new_mob.rotation += randf_range(-PI/4, PI/4)
 	
-	var velocity = Vector2(250.0 , 0)
+	var random_x = randf_range(100.0, 250.0)
+	var velocity = Vector2(random_x, 0)
 	new_mob.linear_velocity = velocity.rotated(new_mob.rotation)
+	
+	# Adiciona na cena
 	add_child(new_mob)
 	
 	
